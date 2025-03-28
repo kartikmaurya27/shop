@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open and Close Webcam</title>
+    <link rel="stylesheet" href="cam.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="nav-logo border">
+                <div class="logo">
+                </div>
+            </div>
+            <div class="nav-address border">
+                <p class="add-1">
+                    address
+                </p>
+                <div class="add-icon ">
+                    <i class="fa-solid fa-map-pin" style="color: #ffffff;"></i>
+                    <p class="add-2"><a href="https://maps.app.goo.gl/uc8Pi3UG2vyamfmA9?g_st=aw">varanasi</a></p>
+                </div>
+            </div>
+            <div class="nav-serch ">
+                <select class="serch-select">
+                    <option>All</option>
+                    <option>1 </option>
+                <option>2 </option>
+                <option>3 </option>
+                <option>4 </option>
+                <option>5 </option>
+                </select>
+                <input placeholder="serch" class="serch-input">
+                <div class="serch-icon1">
+                    <a href="cam.html"><i class="fa-solid fa-camera" style="color: #000000;"></i></a>
+                </div>
+                <div class="serch-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+            <div class="nav-singin border">
+                <p class="u-1">
+                    <span>
+                        Contact
+                    </span>
+                </p>
+                <div class="user">
+                    <i class="fa-regular fa-user" style="color: #ffffff;"></i>
+                <p class="u-2"><a href="contact&help.html">Help</a></p>
+                </div>
+            </div>
+            <div class="nav-singin border">
+                <p class="u-1">
+                    <span>
+                        Sing in
+                    </span>
+                </p>
+                <div class="user">
+                    <i class="fa-regular fa-user" style="color: #ffffff;"></i>
+                <p class="u-2"><a href="login.html">Account</a></p>
+                </div>
+            </div>
+           
+        </div>
+        <div class="panel">
+            <div class="card border"> <a  href="Audio.html" > <img  class="card-img-top" src="hedphone-removebg-preview.png" > <div class="card-body"> <p >headphones</p> </div> </div> 
+            <div class="card border"> <a  href="Audio.html"> <img  class="card-img-top" src="neckband.png" > <div class="card-body"> <p > Neckbands</p> </div> </div> 
+            <div class="card border"> <a  href="charger.html" > <img  class="card-img-top" src="chager.png" > <div class="card-body"> <p >Charger</p> </div> </div> 
+            <div class="card border"> <a  href="cable.html"> <img  class="card-img-top" src="cable.png" > <div class="card-body"> <p > Data Cable's</p> </div> </div>
+            <div class="card border"> <a  href="Cooler,fans.html"> <img  class="card-img-top" src="sw.png" > <div class="card-body"> <p > Cooler/Fans</p> </div> </div>
+            <div class="card border"> <a  href="Kitchen appliances.html"> <img  class="card-img-top" src="wr.png" > <div class="card-body"> <p > Kitchen appliances </p> </div> </div>
+            <div class="card border"> <a  href="Personal care.html"> <img  class="card-img-top" src="diy2.png" > <div class="card-body"> <p >Personal care</p> </div>  </a></div>
+
+        </div>
+   </header>
+    <div class="web">
+        <h1 >Webcam Viewer</h1>
+        <video id="webcam" autoplay></video>
+        <button id="startBtn">Open Webcam</button>
+        <button id="closeBtn">Close Webcam</button>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <div class="upimg">
+        <form action="">
+            <input type="file" id="myFile" name="filename">
+            <input type="submit">
+        </form>
+    </div>
+    
+
+    <script>
+        const video = document.getElementById('webcam');
+        const startBtn = document.getElementById('startBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        let stream = null;
+
+        // Open Webcam
+        startBtn.addEventListener('click', async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+            } catch (err) {
+                alert('Error accessing webcam: ' + err.message);
+            }
+        });
+
+        // Close Webcam
+        closeBtn.addEventListener('click', () => {
+            if (stream) {
+                const tracks = stream.getTracks();
+                tracks.forEach(track => track.stop());
+                video.srcObject = null;
+                stream = null;
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
